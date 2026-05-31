@@ -1,0 +1,720 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  margin: 0;
+  background:#f4f8f4;
+  overflow-x:hidden;
+  font-family: Arial, sans-serif;
+}
+
+/* HALAMAN */
+.screen{
+  display:none;
+  flex-direction:column;
+  min-height:100vh;
+  padding:20px;
+  padding-bottom:120px;
+  animation:fadeScreen .3s;
+}
+
+/* SCREEN */
+.screen{
+  display:none;
+  flex-direction:column;
+  width:100%;
+  min-height:100vh;
+  padding:20px;
+  overflow-y:auto;
+  padding-bottom: 140px;
+}
+
+.active{
+  display:flex;
+}
+
+/* CENTER */
+.center{
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+/* SPLASH */
+.splash{
+  background:linear-gradient(to bottom,#2f5d46,#9fbc63);
+  color:white;
+}
+
+.logo{
+  font-size:90px;
+}
+
+.splash h1{
+  font-size:50px;
+  margin-top:10px;
+}
+
+.splash p{
+  margin-top:10px;
+  font-size:18px;
+}
+
+/* BUTTON */
+.btn{
+  margin-top:20px;
+  padding:15px 30px;
+  border:none;
+  border-radius:20px;
+  background:#2f5d46;
+  color:white;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.edit-btn{
+  margin-top:15px;
+  padding:10px 20px;
+  border:none;
+  border-radius:15px;
+  background:#9fbc63;
+  color:white;
+  cursor:pointer;
+  font-size:14px;
+}
+
+/* NEXT BUTTON */
+.next-btn{
+  margin-top:20px;
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:18px;
+  background:#2f5d46;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  display:none;
+}
+
+/* ANIMASI QUIZ */
+.quiz-card{
+  animation:fadeSlide 0.4s;
+}
+
+@keyframes fadeSlide{
+
+  from{
+    opacity:0;
+    transform:translateX(30px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+/* BOX */
+.box,
+.card,
+.material-card,
+.materi-box{
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* LOGIN */
+.box{
+  width:100%;
+  max-width:400px;
+}
+
+/* INPUT */
+input{
+  width:100%;
+  padding:15px;
+  margin-top:15px;
+  border:none;
+  border-radius:15px;
+  background:#f0f0f0;
+  font-size:16px;
+}
+
+/* HOME */
+#welcome{
+  margin-bottom:25px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+  margin-bottom:120px;
+}
+
+/* CARD */
+.card{
+  text-align:center;
+  cursor:pointer;
+  transition:0.3s;
+  font-size:35px;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.card p{
+  margin-top:10px;
+  font-size:16px;
+}
+
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:75px;
+  background:white;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  border-top-left-radius:25px;
+  border-top-right-radius:25px;
+  box-shadow:0 -4px 15px rgba(0,0,0,0.1);
+  z-index:999;
+}
+
+/* NAV ITEM */
+.nav-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:#2f5d46;
+  font-size:12px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.nav-icon{
+  font-size:22px;
+  margin-bottom:3px;
+}
+
+/* ACTIVE */
+.active-nav{
+  color:#9fbc63;
+}
+
+/* HOVER */
+.nav-item:hover{
+  transform:translateY(-3px);
+}
+
+/* LEAF BUTTON */
+.leaf-btn{
+  width:65px;
+  height:65px;
+  background:#2f5d46;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  font-size:30px;
+  margin-top:-35px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.2);
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.leaf-btn:hover{
+  transform:scale(1.05);
+}
+
+/* MATERI */
+.top-bar{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.back-btn{
+  width:45px;
+  height:45px;
+  border:none;
+  border-radius:50%;
+  background:#2f5d46;
+  color:white;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.materi-list{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.materi-item{
+  background:white;
+  padding:18px;
+  border-radius:18px;
+  cursor:pointer;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  transition:0.3s;
+  font-weight:bold;
+}
+
+.materi-item:hover{
+  background:#eef6e9;
+}
+
+.materi-content{
+  margin-top:25px;
+  margin-bottom:120px;
+}
+
+.materi-box{
+  margin-top:15px;
+  line-height:1.7;
+}
+
+.materi-box{
+  margin-top:15px;
+  background:white;
+  padding:22px;
+  border-radius:20px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* JUDUL */
+#materiTitle{
+  font-size:24px;
+  color:#2f5d46;
+  margin-bottom:15px;
+  line-height:1.4;
+}
+
+/* ISI MATERI */
+#materiText{
+  font-size:16px;
+  line-height:1.9;
+  text-align:justify;
+  color:#444;
+}
+
+/* QUIZ */
+.answer{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:15px;
+  margin-top:15px;
+  background:#dfe689;
+  cursor:pointer;
+  font-size:16px;
+}
+
+/* SCORE */
+#score{
+  font-size:55px;
+  color:#2f5d46;
+  margin-top:20px;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+
+  .screen{
+    padding:18px;
+  }
+
+  .logo{
+    font-size:70px;
+  }
+
+  .splash h1{
+    font-size:40px;
+  }
+
+  .grid{
+    gap:12px;
+  }
+
+  .card{
+    font-size:28px;
+    padding:25px 15px;
+  }
+
+  .navbar{
+    padding:12px 8px;
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:75px;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    border-top-left-radius:25px;
+    border-top-right-radius:25px;
+    box-shadow:0 -4px 15px rgba(0,0,0,0.1);
+    z-index:1000;
+  }
+
+  /* ITEM */
+.nav-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:12px;
+  color:#2f5d46;
+  cursor:pointer;
+}
+
+.nav-icon{
+  font-size:22px;
+  margin-bottom:4px;
+}
+
+/* TOMBOL TENGAH */
+.leaf-btn{
+  width:65px;
+  height:65px;
+  background:#2f5d46;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  font-size:30px;
+  margin-top:-35px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.2);
+}
+
+  .leaf-btn{
+    width:60px;
+    height:60px;
+    font-size:28px;
+  }
+
+}
+
+/* QUIZ */
+.quiz-container{
+  margin-top:20px;
+  margin-bottom:120px;
+}
+
+.quiz-card{
+  background:white;
+  padding:25px;
+  border-radius:25px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+.quiz-number{
+  background:#2f5d46;
+  color:white;
+  display:inline-block;
+  padding:8px 15px;
+  border-radius:15px;
+  margin-bottom:20px;
+  font-size:14px;
+}
+
+.quiz-card h3{
+  font-size:22px;
+  margin-bottom:25px;
+  line-height:1.5;
+}
+
+.answer{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:18px;
+  margin-top:15px;
+  background:#dfe689;
+  cursor:pointer;
+  font-size:16px;
+  transition:0.3s;
+}
+
+.answer:hover{
+  background:#c8d85d;
+  transform:scale(1.02);
+}
+
+/* PROFILE */
+.profile-card{
+  background:white;
+  padding:30px 20px;
+  border-radius:25px;
+  text-align:center;
+  margin-top:20px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+.profile-img{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  background:#dfe689;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:50px;
+  margin:auto;
+}
+
+.profile-card h2{
+  margin-top:15px;
+  color:#2f5d46;
+}
+
+.profile-desc{
+  margin-top:8px;
+  color:#777;
+}
+
+/* ACCOUNT */
+.account-menu{
+  margin-top:25px;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.account-item{
+  background:white;
+  padding:18px;
+  border-radius:18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  font-weight:bold;
+}
+
+.account-item span{
+  color:#2f5d46;
+}
+
+/* LOGOUT */
+.logout-btn{
+  margin-top:30px;
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:18px;
+  background:#2f5d46;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+@keyframes fadeScreen{
+
+  from{
+    opacity:0;
+    transform:translateX(20px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+.top-bar{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.back-btn{
+  width:40px;
+  height:40px;
+  border:none;
+  border-radius:12px;
+  background:#dfe689;
+  font-size:18px;
+  cursor:pointer;
+}
+
+/* ========================= */
+/* MOBILE RESPONSIVE */
+/* ========================= */
+
+@media screen and (max-width: 768px){
+
+  body{
+    font-size:14px;
+  }
+
+  .screen{
+    padding:15px;
+    padding-bottom:100px;
+  }
+
+  /* LOGIN */
+  .box{
+    width:100%;
+    max-width:100%;
+    padding:20px;
+  }
+
+  input{
+    font-size:16px;
+  }
+
+  /* HOME */
+  #welcome{
+    font-size:22px;
+    margin-bottom:20px;
+  }
+
+  .grid{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .card{
+    font-size:28px;
+    padding:20px 10px;
+  }
+
+  .card p{
+    font-size:14px;
+  }
+
+  /* MATERI */
+  .materi-item{
+    font-size:14px;
+    padding:15px;
+  }
+
+  #materiTitle{
+    font-size:20px;
+  }
+
+  #materiText{
+    font-size:15px;
+    line-height:1.8;
+    text-align:justify;
+  }
+
+  .materi-box{
+    max-height:400px;
+    overflow-y:auto;
+  }
+
+  /* QUIZ */
+  .quiz-container{
+  width:100%;
+  max-width:700px;
+  margin:auto;
+}
+
+.quiz-card{
+  background:white;
+  padding:25px;
+  border-radius:25px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+.quiz-number{
+  background:#2f5d46;
+  color:white;
+  padding:8px 15px;
+  border-radius:15px;
+  display:inline-block;
+  margin-bottom:20px;
+}
+
+.answer{
+  width:100%;
+  padding:15px;
+  margin-top:12px;
+  border:none;
+  border-radius:15px;
+  background:#dfe689;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.answer.correct{
+  background:#8fd694;
+}
+
+.answer.wrong{
+  background:#ffb3b3;
+}
+
+.next-btn{
+  width:100%;
+  padding:15px;
+  margin-top:20px;
+  border:none;
+  border-radius:15px;
+  background:#2f5d46;
+  color:white;
+  cursor:pointer;
+  display:none;
+}
+
+  /* PROFILE */
+  .profile-card{
+    padding:20px;
+  }
+
+  .profile-img{
+    width:80px;
+    height:80px;
+    font-size:40px;
+  }
+
+  .profile-card h2{
+    font-size:20px;
+  }
+
+  .account-item{
+    font-size:14px;
+    padding:15px;
+  }
+
+  /* NAVBAR */
+  .navbar{
+    height:70px;
+  }
+
+  .nav-icon{
+    font-size:20px;
+  }
+
+  .nav-item span{
+    font-size:11px;
+  }
+
+  .leaf-btn{
+    width:55px;
+    height:55px;
+    font-size:25px;
+    margin-top:-25px;
+  }
+
+}

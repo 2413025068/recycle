@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecycleMe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <section id="splash" class="screen active splash center">
+    <div class="logo">♻️</div>
+    <h1>RecycleMe</h1>
+    <p>Smart Recycling App</p>
+    <button class="btn" onclick="showScreen('login')">Mulai</button>
+  </section>
+
+  <section id="login" class="screen center">
+    <div class="box">
+      <h2>LOGIN</h2>
+      <input type="text" id="username" placeholder="Masukkan Nama">
+      <input type="password" id="password" placeholder="Masukkan Password">
+      <button class="btn" onclick="loginUser()">Masuk</button>
+    </div>
+  </section>
+
+  <section id="home" class="screen">
+    <h2 id="welcome">Hallo 👋</h2>
+
+    <div class="grid">
+      <div class="card" onclick="showScreen('materi')">
+        📚
+        <p>Materi</p>
+      </div>
+      <div class="card" onclick="showScreen('quiz')">
+        🎮
+        <p>Kuis</p>
+      </div>
+      <div class="card" onclick="showScreen('tips')">
+        💡
+        <p>Tips</p>
+      </div>
+      <div class="card" onclick="showScreen('about')">
+        ℹ️
+        <p>Tentang</p>
+      </div>
+    </div>
+
+    <div class="navbar">
+      <!-- NAVBAR MOBILE -->
+<div class="navbar">
+
+  <!-- HOME -->
+  <div class="nav-item active-nav"
+  onclick="showScreen('home')">
+
+    <div class="nav-icon">🏠</div>
+
+    <span>Home</span>
+
+  </div>
+
+  <!-- MATERI -->
+  <div class="nav-item"
+  onclick="showScreen('materi')">
+
+    <div class="nav-icon">📚</div>
+
+    <span>Materi</span>
+
+  </div>
+
+  <!-- TOMBOL TENGAH -->
+  <div class="leaf-btn"
+  onclick="showScreen('quiz')">
+
+    🍃
+
+  </div>
+
+  <!-- QUIZ --> 
+  <div class="nav-item"
+  onclick="showScreen('quiz')">
+
+    <div class="nav-icon">🧠</div>
+
+    <span>Kuis</span>
+
+  </div>
+
+  <!-- AKUN -->
+  <div class="nav-item"
+  onclick="showScreen('about')">
+
+    <div class="nav-icon">👤</div>
+
+    <span>Akun</span>
+
+  </div>
+
+</div>
+    </div>
+  </section>
+
+  <section id="quiz" class="screen">
+    <div class="top-bar">
+
+      <button class="back-btn"onclick="showScreen('home')">⬅ </button>
+
+      <h2>Kuis RecycleMe</h2>
+    </div>
+
+    <div class="quiz-container">
+        <div class="quiz-card">
+        <div class="quiz-number"
+          id="quiz-number">
+          Pertanyaan 1
+        </div>
+
+        <h3 id="question">
+          Loading...
+        </h3>
+      <div id="answer-buttons">
+      </div>
+
+      <button class="next-btn"
+        id="next-btn"
+        onclick="nextQuestion()">
+        Selanjutnya →
+      </button>
+     </div>
+    </div>
+  </section>
+
+  <section id="materi" class="screen">
+    <div class="top-bar">
+      <button class="back-btn" onclick="showScreen('home')">⬅</button>
+      <h2>Materi Daur Ulang</h2>
+    </div>
+
+    <div class="materi-list">
+      <div class="materi-item"
+        onclick="loadMateri(1)">
+        ♻️ Pengertian Daur Ulang
+      </div>
+
+      <div class="materi-item"
+        onclick="loadMateri(2)">
+        🗑️ Jenis-Jenis Sampah
+      </div>
+
+      <div class="materi-item"
+        onclick="loadMateri(3)">
+        🌎 Manfaat Daur Ulang
+      </div>
+
+      <div class="materi-item"
+        onclick="loadMateri(4)">
+        ♻️ Cara Melakukan Daur Ulang
+      </div>
+
+      <div class="materi-item"
+        onclick="loadMateri(5)">
+        🌱 Menjaga Lingkungan
+      </div>
+    </div>
+
+    <div class="materi-content">
+      <h2 id="materiTitle">Pilih materi</h2>
+      <div class="materi-box">
+        <div id="materiText">Silahkan pilih daftar isi materi terlebih dahulu.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="result" class="screen center">
+    <div class="box">
+      <h2>Hasil Kuis</h2>
+      <div id="score">100 / 100</div>
+      <button class="btn" onclick="showScreen('home')">Kembali ke Home</button>
+      <button class="btn" onclick="startQuiz()" style="margin-top:10px;">Ulangi Kuis</button>
+    </div>
+  </section>
+
+  <section id="tips" class="screen center">
+    <div class="box">
+      <h2>Tips Daur Ulang</h2>
+      <div style="text-align: left; margin-top: 15px;">
+        <p>✔ Pisahkan sampah organik & anorganik</p>
+        <p style="margin-top: 10px;">✔ Kurangi penggunaan plastik sekali pakai</p>
+        <p style="margin-top: 10px;">✔ Gunakan kembali wadah yang masih layak</p>
+      </div>
+      <button class="btn" onclick="showScreen('home')">Kembali</button>
+    </div>
+  </section>
+
+  <section id="about" class="screen">
+
+  <!-- HEADER -->
+  <div class="top-bar">
+
+    <button class="back-btn"
+    onclick="showScreen('home')">
+      ⬅
+    </button>
+
+    <h2>Akun Saya</h2>
+
+  </div>
+
+  <!-- PROFILE -->
+  <div class="profile-card">
+
+    <div class="profile-img"
+      onclick="changeProfileIcon()"
+      id="profileIcon">
+      👤
+    </div>
+
+    <h2 id="profileName">Azizah</h2>
+
+    <p class="profile-desc">
+      Pengguna RecycleMe
+    </p>
+    <button class="edit-btn"
+      onclick="editProfile()">
+      Edit Profile 
+    </button>
+  </div>
+
+  <!-- MENU -->
+  <div class="account-menu">
+
+    <div class="account-item">
+      📚 Materi Dipelajari
+      <span id="materiCount">0 Materi</span>
+    </div>
+
+    <div class="account-item">
+      🧠 Kuis Selesai
+      <span id="quizCount">0 Kuis</span>
+    </div>
+
+    <div class="account-item">
+      🌱 Poin Hijau
+      <span id="greenPoint">0</span>
+    </div>
+
+  </div>
+
+  <!-- BUTTON -->
+  <button class="logout-btn"
+  onclick="showScreen('login')">
+    Logout
+  </button>
+
+</section>
+
+  <script src="script.js"></script>
+</body>
+</html>

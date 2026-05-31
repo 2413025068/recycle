@@ -624,58 +624,22 @@ input{
   }
 
   /* QUIZ */
-  .quiz-container{
-  width:100%;
-  max-width:700px;
-  margin:auto;
-}
+  .quiz-card{
+    padding:20px;
+  }
 
-.quiz-card{
-  background:white;
-  padding:25px;
-  border-radius:25px;
-  box-shadow:0 4px 15px rgba(0,0,0,0.1);
-}
+  .quiz-card h3{
+    font-size:18px;
+  }
 
-.quiz-number{
-  background:#2f5d46;
-  color:white;
-  padding:8px 15px;
-  border-radius:15px;
-  display:inline-block;
-  margin-bottom:20px;
-}
+  .answer{
+    font-size:15px;
+    padding:14px;
+  }
 
-.answer{
-  width:100%;
-  padding:15px;
-  margin-top:12px;
-  border:none;
-  border-radius:15px;
-  background:#dfe689;
-  cursor:pointer;
-  font-size:16px;
-}
-
-.answer.correct{
-  background:#8fd694;
-}
-
-.answer.wrong{
-  background:#ffb3b3;
-}
-
-.next-btn{
-  width:100%;
-  padding:15px;
-  margin-top:20px;
-  border:none;
-  border-radius:15px;
-  background:#2f5d46;
-  color:white;
-  cursor:pointer;
-  display:none;
-}
+  .next-btn{
+    font-size:15px;
+  }
 
   /* PROFILE */
   .profile-card{

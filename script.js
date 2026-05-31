@@ -1,487 +1,322 @@
-// ======================
-// DATA APLIKASI
-// ======================
-
 let materiRead = 0;
 let quizDone = 0;
 let greenPoint = 0;
+
 let materiVisited = [];
+
+console.log("JS BERHASIL");
+
+// 1. DATA SOAL KUIS (Anda bisa menambah soal di sini)
+const myQuestions = [
+  {
+    question: "Botol plastik termasuk jenis sampah?",
+    answers: [
+      { text: "Organik", correct: false },
+      { text: "Anorganik", correct: true },
+      { text: "B3", correct: false }
+    ]
+  },
+  {
+    question: "Sampah yang mudah terurai seperti daun dan sisa makanan disebut?",
+    answers: [
+      { text: "Anorganik", correct: false },
+      { text: "B3", correct: false },
+      { text: "Organik", correct: true }
+    ]
+  },
+  {
+    question: "Manakah di bawah ini yang merupakan cara terbaik mengurangi sampah plastik?",
+    answers: [
+      { text: "Membakar plastik", correct: false },
+      { text: "Membawa kantong belanja sendiri", correct: true },
+      { text: "Membuangnya ke sungai", correct: false }
+    ]
+  }
+];
 
 let currentQuestionIndex = 0;
 let score = 0;
 
-// ======================
-// DATA QUIZ
-// ======================
-
-const questions = [
-{
-question:"Botol plastik termasuk jenis sampah?",
-answers:[
-"Organik",
-"Anorganik",
-"B3",
-"Kaca"
-],
-correct:1
-},
-{
-question:"Daun kering termasuk sampah?",
-answers:[
-"Organik",
-"Anorganik",
-"B3",
-"Logam"
-],
-correct:0
-},
-{
-question:"Apa manfaat daur ulang?",
-answers:[
-"Menambah sampah",
-"Mencemari lingkungan",
-"Mengurangi limbah",
-"Merusak alam"
-],
-correct:2
-},
-{
-question:"Wadah plastik bekas bisa?",
-answers:[
-"Dibuang ke sungai",
-"Digunakan kembali",
-"Dibakar",
-"Dikubur"
-],
-correct:1
-},
-{
-question:"Warna tempat sampah organik biasanya?",
-answers:[
-"Hijau",
-"Merah",
-"Hitam",
-"Ungu"
-],
-correct:0
-}
-];
-
-let currentQuestion = 0;
-let score = 0;
-
-// ======================
-// MULAI QUIZ
-// ======================
-
-function startQuiz(){
-
-currentQuestion = 0;
-score = 0;
-
-showScreen("quiz");
-
-document.getElementById("next-btn").style.display =
-"none";
-
-showQuestion();
-}
-
-// ======================
-// TAMPILKAN SOAL
-// ======================
-
-function showQuestion(){
-
-const q = questions[currentQuestion];
-
-document.getElementById("quiz-number").innerHTML =
-"Pertanyaan " +
-(currentQuestion + 1) +
-" dari " +
-questions.length;
-
-document.getElementById("question").innerHTML =
-q.question;
-
-const answerBox =
-document.getElementById("answer-buttons");
-
-answerBox.innerHTML = "";
-
-q.answers.forEach((answer,index)=>{
-
-const button =
-document.createElement("button");
-
-button.classList.add("answer");
-
-button.innerHTML = answer;
-
-button.onclick = () =>{
-selectAnswer(index,button);
-};
-
-answerBox.appendChild(button);
-
-});
-
-document.getElementById("next-btn").style.display =
-"none";
-}
-
-// ======================
-// PILIH JAWABAN
-// ======================
-
-function selectAnswer(index,button){
-
-const correct =
-questions[currentQuestion].correct;
-
-document
-.querySelectorAll(".answer")
-.forEach(btn=>{
-btn.disabled = true;
-});
-
-if(index === correct){
-
-button.classList.add("correct");
-score++;
-
-}else{
-
-button.classList.add("wrong");
-
-document
-.querySelectorAll(".answer")
-[correct]
-.classList.add("correct");
-
-}
-
-document.getElementById("next-btn")
-.style.display = "block";
-}
-
-// ======================
-// SOAL BERIKUTNYA
-// ======================
-
-function nextQuestion(){
-
-currentQuestion++;
-
-if(currentQuestion < questions.length){
-
-showQuestion();
-
-}else{
-
-finishQuiz();
-
-}
-}
-
-// ======================
-// HASIL QUIZ
-// ======================
-
-function finishQuiz(){
-
-quizDone++;
-
-const nilai =
-Math.round(
-(score / questions.length) * 100
-);
-
-greenPoint += nilai;
-
-updateAccount();
-
-document.getElementById("score").innerHTML =
-nilai + " / 100";
-
-showScreen("result");
-}
-
-// ======================
-// PINDAH HALAMAN
-// ======================
-
-function showScreen(screenId){
-
-    document.querySelectorAll(".screen").forEach(screen=>{
+// 2. FUNGSI PINDAH HALAMAN
+function showScreen(id) {
+    const screens = document.querySelectorAll(".screen");
+    screens.forEach(function(screen){
         screen.style.display = "none";
     });
+    document.getElementById(id).style.display = "flex";
 
-    const target = document.getElementById(screenId);
-
-    if(target){
-        target.style.display = "flex";
-    }
-
-    if(screenId === "home"){
-        updateAccount();
+    // Jika masuk ke halaman kuis, mulai kuis dari awal
+    if (id === 'quiz') {
+        startQuiz();
     }
 }
 
-// ======================
-// LOGIN
-// ======================
-
-function loginUser(){
-
-    const username =
-    document.getElementById("username").value.trim();
-
-    if(username === ""){
-        alert("Masukkan nama terlebih dahulu");
-        return;
+// 3. FUNGSI LOGIN
+function loginUser() {
+    const name = document.getElementById("username").value;
+    if(name == ""){
+        alert("Masukkan nama");
+    } else {
+        document.getElementById("welcome").innerHTML = "Hallo, " + name + " 👋";
+        showScreen("home");
     }
-
-    document.getElementById("welcome").innerHTML =
-    "Hallo, " + username + " 👋";
-
-    document.getElementById("profileName").innerHTML =
-    username;
-
-    showScreen("home");
 }
 
-// ======================
-// QUIZ
-// ======================
-
-function startQuiz(){
-  
-  alert("Quiz berjalan")
+// 4. FUNGSI MULAI KUIS
+function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
-
-    showScreen("quiz");
-
     showQuestion();
 }
 
-function showQuestion(){
+// 5. FUNGSI MENAMPILKAN SOAL
+function showQuestion() {
+    const currentQuestion = myQuestions[currentQuestionIndex];
+    
+    // Update nomor dan teks pertanyaan
+    document.getElementById("quiz-number").innerHTML = "Pertanyaan " + (currentQuestionIndex + 1) + " dari " + myQuestions.length;
+    document.getElementById("question").innerHTML = currentQuestion.question;
 
-    const questionData =
-    myQuestions[currentQuestionIndex];
+    // Bersihkan kontainer tombol jawaban lama
+    const answerButtonsElement = document.getElementById("answer-buttons");
+    answerButtonsElement.innerHTML = "";
 
-    document.getElementById("quiz-number").innerHTML =
-    "Pertanyaan " +
-    (currentQuestionIndex + 1) +
-    " dari " +
-    myQuestions.length;
-
-    document.getElementById("question").innerHTML =
-    questionData.question;
-
-    const answerContainer =
-    document.getElementById("answer-buttons");
-
-    answerContainer.innerHTML = "";
-
-    questionData.answers.forEach(answer=>{
-
-        const button =
-        document.createElement("button");
-
+    // Buat tombol jawaban baru secara otomatis
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerText = answer.text;
         button.classList.add("answer");
-
-        button.innerHTML = answer.text;
-
-        button.onclick = function(){
-
-            document
-            .querySelectorAll(".answer")
-            .forEach(btn=>{
-                btn.disabled = true;
-            });
-
-            if(answer.correct){
-                score++;
-                button.style.background =
-                "#9fbc63";
-            }else{
-                button.style.background =
-                "#ffb3b3";
-            }
-
-            document.getElementById("next-btn")
-            .style.display = "block";
-        };
-
-        answerContainer.appendChild(button);
+        button.onclick = function() { checkAnswer(answer.correct); };
+        answerButtonsElement.appendChild(button);
     });
+}
+
+// 6. FUNGSI CEK JAWABAN & LANJUT SOAL
+function checkAnswer(isCorrect){
+  const buttons =
+  document.querySelectorAll(".answer");
+
+  buttons.forEach(btn=>{
+    btn.disabled = true;
+  });
+
+  if(isCorrect){
+
+    score += 100;
+
+    alert("Jawaban Benar 🎉");
+
+  } else {
+
+    alert("Jawaban Salah 😢");
+  }
+
+  document.getElementById("next-btn")
+  .style.display = "block";
 }
 
 function nextQuestion(){
 
-    currentQuestionIndex++;
+  currentQuestionIndex++;
 
-    document.getElementById("next-btn")
-    .style.display = "none";
+  document.getElementById("next-btn")
+  .style.display = "none";
 
-    if(currentQuestionIndex < myQuestions.length){
+  if(currentQuestionIndex <
+  myQuestions.length){
 
-        showQuestion();
+    showQuestion();
 
-    }else{
-
-        finishQuiz();
-
-    }
-}
-
-function finishQuiz(){
+  } else {
 
     quizDone++;
 
-    const nilai =
-    Math.round(
-        (score / myQuestions.length) * 100
-    );
-
-    greenPoint += nilai;
+    greenPoint += score;
 
     updateAccount();
 
-    document.getElementById("score").innerHTML =
-    nilai + " / 100";
+    let finalScore =
+    Math.round(score / myQuestions.length);
+
+    document.getElementById("score")
+    .innerHTML =
+    finalScore + " / 100";
 
     showScreen("result");
+  }
 }
 
-// ======================
-// MATERI
-// ======================
+// 7. FUNGSI MATERI
+function showMateri(title, text){
+  document.getElementById("materiTitle").innerHTML = title;
+  document.getElementById("materiText").innerHTML = text;
+}
 
 const materiData = {
 
-1:{
-title:"Pengertian Daur Ulang",
-text:"Daur ulang adalah proses mengolah kembali sampah menjadi barang yang bermanfaat dan memiliki nilai guna."
-},
+  1: {
+    title: "Pengertian Daur Ulang",
 
-2:{
-title:"Jenis Sampah",
-text:"Sampah terdiri dari sampah organik, anorganik dan B3."
-},
+    text: `
+    Daur ulang adalah proses mengolah kembali barang bekas atau sampah menjadi barang baru yang bermanfaat.<br><br>
 
-3:{
-title:"Manfaat Daur Ulang",
-text:"Mengurangi pencemaran lingkungan, menghemat sumber daya dan menciptakan produk baru."
-},
+    Daur ulang dilakukan untuk mengurangi pencemaran lingkungan dan menghemat sumber daya alam.<br><br>
 
-4:{
-title:"Cara Daur Ulang",
-text:"Pisahkan sampah berdasarkan jenisnya kemudian olah kembali menjadi produk yang bermanfaat."
-},
+    Contoh barang yang dapat didaur ulang yaitu plastik, kertas, kaca, dan kaleng.
+    `
+  },
 
-5:{
-title:"Menjaga Lingkungan",
-text:"Membuang sampah pada tempatnya, mengurangi plastik sekali pakai dan melakukan daur ulang."
-}
+  2: {
+    title: "Jenis-Jenis Sampah",
+
+    text: `
+    Sampah dibedakan menjadi beberapa jenis, yaitu:<br><br>
+
+    <b>Sampah Organik</b><br>
+    Sampah yang mudah membusuk atau terurai secara alami seperti daun dan sisa makanan.<br><br>
+
+    <b>Sampah Anorganik</b><br>
+    Sampah yang sulit terurai seperti plastik, kaca, botol, dan kaleng.<br><br>
+
+    <b>Sampah B3</b><br>
+    Sampah berbahaya yang mengandung zat kimia seperti baterai dan obat-obatan.
+    `
+  },
+
+  3: {
+    title: "Manfaat Daur Ulang",
+
+    text: `
+    Daur ulang memiliki banyak manfaat, antara lain:<br><br>
+
+    • Mengurangi jumlah sampah<br>
+    • Menjaga kebersihan lingkungan<br>
+    • Mengurangi pencemaran tanah dan air<br>
+    • Menghemat energi dan sumber daya alam<br>
+    • Membuat lingkungan menjadi sehat dan nyaman
+    `
+  },
+
+  4: {
+    title: "Cara Melakukan Daur Ulang",
+
+    text: `
+    Langkah sederhana dalam melakukan daur ulang:<br><br>
+
+    1. Pisahkan sampah organik dan anorganik.<br>
+    2. Bersihkan sampah yang masih dapat digunakan.<br>
+    3. Kumpulkan barang bekas seperti botol dan kertas.<br>
+    4. Olah kembali menjadi barang baru yang bermanfaat.<br><br>
+
+    Contoh:<br>
+    • Botol plastik menjadi pot tanaman<br>
+    • Kaleng menjadi tempat pensil<br>
+    • Kertas bekas menjadi kerajinan tangan
+    `
+  },
+
+  5: {
+    title: "Menjaga Lingkungan",
+
+    text: `
+    Menjaga lingkungan dapat dilakukan mulai dari hal kecil, seperti:<br><br>
+
+    • Tidak membuang sampah sembarangan<br>
+    • Mengurangi penggunaan plastik<br>
+    • Membawa tumbler sendiri<br>
+    • Menanam pohon<br>
+    • Ikut kerja bakti membersihkan lingkungan<br><br>
+
+    Dengan menjaga lingkungan, kehidupan menjadi lebih sehat dan nyaman.
+    `
+  }
 
 };
 
 function loadMateri(id){
+  document.getElementById("materiTitle")
+  .innerHTML =
+  materiData[id].title;
 
-    document.getElementById("materiTitle")
-    .innerHTML =
-    materiData[id].title;
+  document.getElementById("materiText")
+  .innerHTML =
+  materiData[id].text;
 
-    document.getElementById("materiText")
-    .innerHTML =
-    materiData[id].text;
-
-    if(!materiVisited.includes(id)){
-
-        materiVisited.push(id);
-
-        materiRead++;
-
-        greenPoint += 10;
-
-        updateAccount();
-    }
+  // CEK SUDAH DIBACA BELUM
+  if(!materiVisited.includes(id)){
+    materiVisited.push(id);
+    materiRead++;
+    greenPoint += 10;
+    updateAccount();
+  }
 }
 
-// ======================
-// AKUN
-// ======================
+console.log(materiData);
 
 function updateAccount(){
 
-    const materi =
-    document.getElementById("materiCount");
+  document.getElementById("materiCount")
+  .innerHTML =
+  materiRead + " Materi";
 
-    const quiz =
-    document.getElementById("quizCount");
+  document.getElementById("quizCount")
+  .innerHTML =
+  quizDone + " Kuis";
 
-    const point =
-    document.getElementById("greenPoint");
-
-    if(materi){
-        materi.innerHTML =
-        materiRead + " Materi";
-    }
-
-    if(quiz){
-        quiz.innerHTML =
-        quizDone + " Kuis";
-    }
-
-    if(point){
-        point.innerHTML =
-        greenPoint;
-    }
+  document.getElementById("greenPoint")
+  .innerHTML =
+  greenPoint;
 }
 
 function editProfile(){
 
-    const namaBaru =
-    prompt("Masukkan nama baru");
+  let newName =
+  prompt("Masukkan nama baru");
 
-    if(namaBaru && namaBaru.trim() !== ""){
+  if(newName != "" && newName != null){
 
-        document.getElementById("profileName")
-        .innerHTML =
-        namaBaru;
-    }
+    document.getElementById("profileName")
+    .innerHTML = newName;
+  }
 }
 
 function changeProfileIcon(){
 
-    const icons =
-    ["👤","♻️","🌿","🌎","🍃"];
+  let icons = ["👤","🌿","♻️","🌎","🍃"];
 
-    const randomIcon =
-    icons[Math.floor(Math.random()*icons.length)];
+  let randomIcon =
+  icons[Math.floor(Math.random()*icons.length)];
 
-    document.getElementById("profileIcon")
-    .innerHTML =
-    randomIcon;
+  document.getElementById("profileIcon")
+  .innerHTML = randomIcon;
 }
 
-// ======================
-// AWAL APLIKASI
-// ======================
+let screenHistory = [];
 
-window.onload = function(){
+function showScreen(id){
 
-    document
-    .querySelectorAll(".screen")
-    .forEach(screen=>{
-        screen.style.display = "none";
-    });
+  const screens =
+  document.querySelectorAll(".screen");
 
-    document.getElementById("splash")
-    .style.display = "flex";
+  screens.forEach(screen=>{
+    screen.style.display = "none";
+  });
 
-    updateAccount();
-};
+  document.getElementById(id)
+  .style.display = "flex";
+
+  screenHistory.push(id);
+}
+
+function goBack(){
+
+  if(screenHistory.length > 1){
+
+    screenHistory.pop();
+
+    let previous =
+    screenHistory[screenHistory.length - 1];
+
+    showScreen(previous);
+  }
+}
